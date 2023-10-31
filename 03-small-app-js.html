@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Small App JS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        main {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: auto;
+            height: 50vh;
+            width: 50vw;
+            transform: translate(-50%, -50%);
+            background-color: #17181B;
+            padding: 5rem;
+        }
+
+        .header {
+            height: 20%;
+        }
+
+        .header h1 {
+            color: #D3A121;
+        }
+
+        .header p {
+            color: #FFF;
+        }
+        
+        .menu {
+            height: auto;
+        }
+
+        .menu button {
+            padding: 1rem;
+            background-color: #2E3134;
+            color: #FFF;
+            border-radius: 1%;
+            border: none;
+        }
+
+        .menu button:hover {
+            background-color: #D3A121;
+        }
+
+        .content {
+            height: 50%;
+            background-color: #2E3134;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="header">
+            <h1>Javascript</h1>
+            <p>Building a small App using Vanilla Javascript</p>
+        </div>
+        <div class="menu">
+            <button>Why React?</button>
+            <button>Core features</button>
+            <button>Resources</button>
+        </div>
+        <div class="content"></div>
+    </main>
+    <script type="text/javascript">
+        const tabsContent = {
+            whyReact: [
+                'React is extremely popular',
+                'It makes building complex, interactive UI a breeze',
+            ],
+            coreFeatures: [
+                'State and props',
+                'Hooks',
+                'Dynamic UI'
+            ],
+            resources: [
+                'Content from Academind',
+                'Content from EggHead'
+            ]
+        };
+        window.addEventListener('load', function() {
+            const content = document.querySelector('.content');
+            content.innerHTML = `<p>${tabsContent.whyReact}</p>`
+        });
+    </script>
+</body>
+</html>
