@@ -49,6 +49,7 @@
         }
 
         .menu button:hover {
+            cursor: pointer;
             background-color: #D3A121;
         }
 
@@ -65,13 +66,41 @@
             <p>Building a small App using Vanilla Javascript</p>
         </div>
         <div class="menu">
-            <button>Why React?</button>
-            <button>Core features</button>
-            <button>Resources</button>
+            <button id="whyReact">Why React?</button>
+            <button id="coreFeatures">Core features</button>
+            <button id="resources">Resources</button>
         </div>
         <div class="content"></div>
     </main>
     <script type="text/javascript">
+        const content = document.querySelector('.content');
+        const whyReactButton = document.getElementById('whyReact');
+        const coreFeaturesButton = document.getElementById('coreFeatures');
+        const resourcesButton = document.getElementById('resources');
+
+        function showContent(id) {
+            const ul = document.createElement('ul');
+            let listItems = "";
+
+            for (item of id ? tabsContent[id] : tabsContent['whyReact']) {
+                listItems += `<li>${item}</li>`;
+            }
+
+            content.innerHTML = "";
+            ul.innerHTML = listItems;
+            content.append(ul);
+        };
+
+        function handleEvent(e) {
+            showContent(e.target.id);
+        }
+
+        whyReactButton.addEventListener('click', handleEvent);
+
+        coreFeaturesButton.addEventListener('click', handleEvent);
+
+        resourcesButton.addEventListener('click', handleEvent);
+
         const tabsContent = {
             whyReact: [
                 'React is extremely popular',
@@ -87,9 +116,9 @@
                 'Content from EggHead'
             ]
         };
+
         window.addEventListener('load', function() {
-            const content = document.querySelector('.content');
-            content.innerHTML = `<p>${tabsContent.whyReact}</p>`
+            showContent()
         });
     </script>
 </body>
