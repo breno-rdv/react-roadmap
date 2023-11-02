@@ -42,20 +42,33 @@
 
         .menu button {
             padding: 1rem;
+            border: none;
+            border-bottom-color: #f3e248;
+            border-radius: 4px 4px 0 0;
             background-color: #2E3134;
             color: #FFF;
-            border-radius: 1%;
-            border: none;
         }
 
+        .menu button.active,
         .menu button:hover {
             cursor: pointer;
             background-color: #D3A121;
+            transition: all .5s ease-out;
         }
 
         .content {
             height: 50%;
             background-color: #2E3134;
+        }
+
+        .content ul {
+            list-style: none;
+            padding: 1rem;
+        }
+
+        .content ul li {
+            color: #FFF;
+            margin-bottom: 1rem;
         }
     </style>
 </head>
@@ -66,7 +79,7 @@
             <p>Building a small App using Vanilla Javascript</p>
         </div>
         <div class="menu">
-            <button id="whyReact">Why React?</button>
+            <button id="whyReact" class="active">Why React?</button>
             <button id="coreFeatures">Core features</button>
             <button id="resources">Resources</button>
         </div>
@@ -93,6 +106,14 @@
 
         function handleEvent(e) {
             showContent(e.target.id);
+            setButtonActive(e.target);
+        }
+
+        function setButtonActive(btn) {
+            whyReactButton.classList = "";
+            coreFeaturesButton.classList = "";
+            resourcesButton.classList = "";
+            btn.classList.add("active");
         }
 
         whyReactButton.addEventListener('click', handleEvent);
@@ -103,17 +124,17 @@
 
         const tabsContent = {
             whyReact: [
-                'React is extremely popular',
-                'It makes building complex, interactive UI a breeze',
+                'React is extremely popular;',
+                'It makes building complex, interactive UI a breeze;',
             ],
             coreFeatures: [
-                'State and props',
-                'Hooks',
-                'Dynamic UI'
+                'State and props;',
+                'Hooks;',
+                'Dynamic UI;'
             ],
             resources: [
-                'Content from Academind',
-                'Content from EggHead'
+                'Content from Academind;',
+                'Content from EggHead;'
             ]
         };
 
