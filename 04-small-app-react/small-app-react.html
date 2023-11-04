@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Small App React</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        main {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: auto;
+            height: 50vh;
+            width: 50vw;
+            transform: translate(-50%, -50%);
+            background-color: #17181B;
+            padding: 5rem;
+        }
+
+        .header {
+            height: 20%;
+        }
+
+        .header h1 {
+            color: #D3A121;
+        }
+
+        .header p {
+            color: #FFF;
+        }
+        
+        .menu {
+            height: auto;
+        }
+
+        .menu button {
+            padding: 1rem;
+            border: none;
+            border-bottom-color: #f3e248;
+            background-color: #2E3134;
+            color: #FFF;
+        }
+
+        .menu button.active,
+        .menu button:hover {
+            cursor: pointer;
+            background-color: #D3A121;
+            transition: all .5s ease-out;
+        }
+
+        .content {
+            height: 50%;
+            background-color: #2E3134;
+        }
+
+        .content ul {
+            list-style: none;
+            padding: 1rem;
+        }
+
+        .content ul li {
+            color: #FFF;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script type="text/babel">
+        function Header ({ title, subtitle }) {
+            return (
+                <div className="header">
+                    <h1>{title}</h1>
+                    <p>{subtitle}</p>
+                </div>
+            )
+        }
+
+        function Menu ({ content, setContent }) {
+            return (
+                <div className="menu">
+                    <button 
+                        id="whyReact" 
+                        className={content === 'whyReact' ? 'active' : ''} 
+                        onClick={() => setContent('whyReact')}
+                    >
+                        Why React?
+                    </button>
+                    <button 
+                        id="coreFeatures"
+                        className={content === 'coreFeatures' ? 'active' : ''}
+                        onClick={() => setContent('coreFeatures')}
+                    >
+                        Core features
+                    </button>
+                    <button 
+                        id="resources"
+                        className={content === 'resources' ? 'active' : ''}
+                        onClick={() => setContent('resources')}
+                    >
+                        Resources
+                    </button>
+                </div>
+            )
+        }
+
+        function Content ({ contentToShow, tabsContent }) {
+            return (
+                <div className="content">
+                    <ul>
+                        {tabsContent[contentToShow].map((content, index) => {
+                            return (
+                                <li key={index}>{content}</li>
+                            )
+                        })}
+                    </ul>
+                </div>
+            )
+        }
+
+        const App = function () {
+            const data = {
+                whyReact: [
+                    'React is extremely popular;',
+                    'It makes building complex, interactive UI a breeze;',
+                ],
+                coreFeatures: [
+                    'State and props;',
+                    'Hooks;',
+                    'Dynamic UI;'
+                ],
+                resources: [
+                    'Content from Academind;',
+                    'Content from EggHead;'
+                ]
+            };
+            const [content, setContent] = React.useState('whyReact');
+            return (
+                <main>
+                    <Header title="React" subtitle="Building a small App using React"/>
+                    <Menu content={content} setContent={setContent} />
+                    <Content contentToShow={content} tabsContent={data}/>
+                </main>
+            )
+        }    
+
+        const rootElement = document.getElementById('root')
+        ReactDOM.render(<App />, rootElement)
+    </script>
+</body>
+</html>
