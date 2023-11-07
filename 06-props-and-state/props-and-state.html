@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Props and state</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        main {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: auto;
+            height: 50vh;
+            width: 50vw;
+            transform: translate(-50%, -50%);
+            background-color: #17181B;
+            padding: 5rem;
+        }
+
+        .counter {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .counter button {
+            padding: 1rem;
+            border-radius: 5px;
+            background-color: #0B36FA;
+            color: #FFF;
+            width: 10rem;
+            margin-bottom: 2rem;
+        }
+
+        .counter button:hover {
+            cursor: pointer;
+            background-color: #dedede;
+            color: #000;
+            transition: all .5s ease-out;
+        }
+
+        .scoreboard {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 5px;
+            background-color: #FFF;
+            width: 20rem;
+            height: 15rem;
+        }
+
+        .scoreboard span {
+            color:#0B36FA;
+            font-size: 5rem;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script type="text/babel">
+        const rootElement = document.getElementById('root');
+
+        const ScoreBoard = (props) => {
+            return (
+                <div className='scoreboard'>
+                    <span>{props.score}</span>
+                </div>
+            );
+        }
+
+        const Counter = () => {
+            const [count, setCount] = React.useState(0);
+
+            const handleButtonClick = () => {
+                setCount(prev => prev + 1);
+            }
+
+            return (
+                <div className='counter'>
+                    <button onClick={handleButtonClick}>Count</button>
+                    <ScoreBoard score={count} />
+                </div>
+            );
+        };
+
+        const App = () => {
+            return (
+                <main>
+                    <Counter />
+                </main>
+            );
+        };
+
+        
+        ReactDOM.render(<App />, rootElement)
+    </script>
+</body>
+</html>
