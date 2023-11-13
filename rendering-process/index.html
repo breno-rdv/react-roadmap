@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rendering process</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script type="text/babel">
+        const rootElement = document.getElementById('root');
+
+        const App = ({ children }) => {
+            return (
+                <main>{children}</main>
+            );
+        }
+
+        const Value = ({ count }) => {
+             return (
+                <p>{count}</p>
+             );
+        }
+
+        const Title = () => {
+            return (
+                <h1>Counter</h1>
+            )
+        }
+
+        const Counter = () => {
+            const [count, setCount] = React.useState(0);
+            const onClickMe = () => setCount(c => c + 1);
+            return (
+                <>
+                    <Counter count={count} />
+                    <button onClick={onClickMe}>Increment</button>
+                </>
+            );
+        }
+
+        ReactDOM.render(<App><Counter /></App>, rootElement);
+    </script>
+</body>
+</html>
