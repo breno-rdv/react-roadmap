@@ -12,5 +12,5 @@ any data, the fiber does.
 
 Three rules for component be re-rendered:
 - If the component holds state that changes, it will be eventually re-rendered;
-- I a parent component re-renders, the child components will be re-rendered as well;
-- It uses a context value that has just changed, also re-renders;
+- If a parent component re-renders, the child components will be re-rendered as well;
+- If it uses a context value that has just changed, also re-renders;
