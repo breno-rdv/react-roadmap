@@ -13,7 +13,26 @@ Looks at component type and $key prop of a element
 
 - Create a two elements and update their type
 
-- Create two elements and update their props
+- Creating a two elements and update their attributes
+
+> When updating a attribute of an element, React doesn't re-render the component
+
+````Javascript
+const Title = (props) => {
+    return (
+        <h1 className={props.highlighted ? 'highlighted' : ''}>React is awesome</h1>
+    );
+}
+
+const App = () => {
+    const [highlighted, setHighlighted] = React.useState(false);
+
+    return <>
+        <Title highlighted={highlighted} />
+        <button onClick={() => setHighlighted(prev => !prev)}>Highlight Title</button>
+    </>
+}
+````
 
 - Create a list of items and include one at the bottom, with no index
 - Create a list of items and include one at the top, with no index
