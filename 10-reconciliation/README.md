@@ -34,7 +34,30 @@ const App = () => {
 }
 ````
 
-- Create a list of items and include one at the bottom, with no index
+- Creating a list of items and include one at the bottom, with no index
+````Javascript
+const List = (props) => {
+    return (
+        <ul>
+            {props.list?.map(item => {
+                return <li>{item.name}</li>
+            })}
+        </ul>
+    );
+}
+
+const App = () => {
+    const [people, setPeople] = React.useState([{ name: 'John' }, { name: 'Janesse' }]);
+    const [person, setPerson] = React.useState('');
+
+    return <>
+        <List list={people} />
+        <input value={person} onChange={(e) => setPerson(e.target.value)}/>
+        <button onClick={() => setPeople(prev => {setPeople([...prev, { name: person }])})}>Add more</button>
+    </>
+}
+````
+
 - Create a list of items and include one at the top, with no index
 - Create a list of elements and add one in any place, with index
 

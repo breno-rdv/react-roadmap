@@ -21,18 +21,24 @@
     <script type="text/babel">
         const rootElement = document.getElementById('root');
 
-        const Title = (props) => {
+        const List = (props) => {
             return (
-                <h1 className={props.highlighted ? 'highlighted' : ''}>React is awesome</h1>
+                <ul>
+                    {props.list?.map(item => {
+                        return <li>{item.name}</li>
+                    })}
+                </ul>
             );
         }
 
         const App = () => {
-            const [highlighted, setHighlighted] = React.useState(false);
+            const [people, setPeople] = React.useState([{ name: 'John' }, { name: 'Janesse' }]);
+            const [person, setPerson] = React.useState('');
 
             return <>
-                <Title highlighted={highlighted} />
-                <button onClick={() => setHighlighted(prev => !prev)}>Highlight Title</button>
+                <List list={people} />
+                <input value={person} onChange={(e) => setPerson(e.target.value)}/>
+                <button onClick={() => setPeople(prev => {setPeople([...prev, { name: person }])})}>Add more</button>
             </>
         }
         ReactDOM.render(<App />, rootElement)
