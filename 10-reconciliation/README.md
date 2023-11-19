@@ -58,8 +58,18 @@ const App = () => {
 }
 ````
 
-- Create a list of items and include one at the top, with no index
-- Create a list of elements and add one in any place, with index
+- Including one at the top, with no index
+````Javascript
+<button onClick={() => setPeople(prev => {setPeople([...prev, { name: person }])})}>Add more</button>
+````
+- Adding one element in any place, with unique index
+````Javascript
+<ul>
+    {props.list?.map(item => {
+        return <li key={item.name}>{item.name}</li>
+    })}
+</ul>
+````
 
 Bear in mind that React doesn't take care of rendering, this is performed by another package, i.e React-DOM.
 
