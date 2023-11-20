@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=], initial-scale=1.0">
+    <title>Component's lifecycle</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script type="text/babel">
+        const rootElement = document.getElementById('root');
+
+        const FunctionalComponent = () => {
+            const [title, setTitle] = React.useState('Functional Component');
+            const [subtitle, setSubtitle] = React.useState('is amazing');
+
+            function handleOnButtonClick() {
+                setSubtitle(prev => prev.concat(' indeed'));
+            }
+
+            return (
+                <main>
+                    <h1>{title}</h1>
+                    <h2>{subtitle}</h2>
+                    <button onClick={() => handleOnButtonClick()}>
+                        Change subtitle
+                    </button>
+                </main>
+            );
+        }
+        ReactDOM.render(<FunctionalComponent />, rootElement)
+    </script>
+</body>
+</html>

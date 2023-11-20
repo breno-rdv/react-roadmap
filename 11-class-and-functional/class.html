@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=], initial-scale=1.0">
+    <title>Class component</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script type="text/babel">
+        const rootElement = document.getElementById('root');
+
+        class ClassComponent extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    title: 'Class Component',
+                    subtitle: 'is amazing'
+                };
+            }
+
+            handleOnButtonClick() {
+                this.setState({
+                    subtitle: this.state.subtitle.concat(' indeed')
+                });
+            }
+
+            render() {
+                return (
+                    <main>
+                        <h1>{this.state.title}</h1>
+                        <h2>{this.state.subtitle}</h2>
+                        <button onClick={this.handleOnButtonClick.bind(this)}>
+                            Change subtitle
+                        </button>
+                    </main>
+                );
+            }
+        }
+        ReactDOM.render(<ClassComponent />, rootElement)
+    </script>
+</body>
+</html>
