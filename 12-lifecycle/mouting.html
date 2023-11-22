@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=], initial-scale=1.0">
+    <title>Component's lifecycle - mounting</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script type="text/babel">
+        const rootElement = document.getElementById('root');
+
+        class LifecycleComponent extends React.Component {
+            constructor() {
+                super();
+                console.log('%c constructor', 'color: blue');
+            }
+
+            componentDidMount() {
+                console.log('%c componentDidMount', 'color: gray');
+            }
+
+            static getDerivedStateFromProps() {
+                console.log('%c getDerivedStateFromProps', 'color: green');
+                return null;
+            }
+
+            render() {
+                console.log('%c render', 'color: red');
+                return (
+                    <main>
+                        <h1>Main component</h1>
+                    </main>
+                );
+            }
+        }
+        ReactDOM.render(<LifecycleComponent />, rootElement)
+    </script>
+</body>
+</html>
