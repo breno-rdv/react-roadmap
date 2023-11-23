@@ -35,5 +35,32 @@ rendered to the DOM
 When a component is being re-rendered as a result of changes to props or state,
 or a parent re-renders.
 
+### static getDerivedStateFromProps(props, state) {}
+Reminder: This method is called every time a component is re-rendered.
+And has the same behavior as in mounting lifecycle.
+
+#### shouldComponentUpdate(nextProps, nextState) {}
+It dictates if the component should re-render or not.
+- Ideal for perfomance optimization;
+- Changing state should be avoided;
+- Ajax calls should be avoided;
+
+** If component re-rendering be not desired, null must be returned **
+
+#### render() {}
+Same behavior as in other lifecycles.
+
+#### getSnapshotBeforeUpdate(prevProps, prevState) {}
+It is called right before the changes from the Virtual DOM are to be reflected to the DOM.
+- Capture some information from the DOM;
+- Method will either return null or return a value;
+
+** Returned value will be passed as the third parameter to `componentDidUpdateMethod`**
+
+### componentDidUpdate(prevProps, prevState, snapshot) {}
+It is called after the render finishes and can check if components and children have been rendered correctly.
+- Cause side-effects;
+- It runs only once after every re-render;
+
 ## Unmounting
 When a component is being removed from the DOM.
