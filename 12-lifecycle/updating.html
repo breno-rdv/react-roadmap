@@ -14,13 +14,14 @@
     <script type="text/babel">
         const rootElement = document.getElementById('root');
 
-        class LifecycleComponent extends React.Component {
-            constructor() {
+        class ScoreBoard extends React.Component {
+            constructor(props) {
                 super();
             }
 
             shouldComponentUpdate() {
                 console.log('%c shouldComponentUpdate', 'color: gray');
+                return true;
             }
 
             componentDidUpdate() {
@@ -41,13 +42,36 @@
             render() {
                 console.log('%c render', 'color: red');
                 return (
-                    <main>
-                        <h1>Main component</h1>
-                    </main>
+                    <div className='scoreboard'>
+                        <span>{this.props.score}</span>
+                    </div>
                 );
             }
         }
-        ReactDOM.render(<LifecycleComponent />, rootElement)
+
+        const Counter = () => {
+            const [count, setCount] = React.useState(0);
+
+            const handleButtonClick = () => {
+                setCount(prev => prev + 1);
+            }
+
+            return (
+                <div className='counter'>
+                    <button onClick={handleButtonClick}>Count</button>
+                    <ScoreBoard score={count} />
+                </div>
+            );
+        };
+
+        const App = () => {
+            return (
+                <main>
+                    <Counter />
+                </main>
+            );
+        };
+        ReactDOM.render(<App />, rootElement)
     </script>
 </body>
 </html>
