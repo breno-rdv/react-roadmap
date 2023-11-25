@@ -14,25 +14,44 @@
     <script type="text/babel">
         const rootElement = document.getElementById('root');
 
-        class LifecycleComponent extends React.Component {
-            constructor() {
-                super();
+        class Alert extends React.Component {
+            componentWillUnmount() {
+                console.log('%c componentWillUnmount', 'color: blue');
             }
 
-            componentWillUnmount() {
-                console.log('%c render', 'color: green');
+            render() {
+                return (
+                    <div className="alert">Alert</div>
+                );
+            }
+        }
+
+        class AlertComponent extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    showAlert: false,
+                };
+            }
+
+            handleAlertButtonClick() {
+                this.setState(state => ({
+                    showAlert: !state.showAlert
+                }));
             }
 
             render() {
                 console.log('%c render', 'color: red');
                 return (
                     <main>
-                        <h1>Main component</h1>
+                        <button onClick={this.handleAlertButtonClick.bind(this)}>Show alert</button>
+                        {this.state.showAlert && <Alert />}
                     </main>
                 );
             }
         }
-        ReactDOM.render(<LifecycleComponent />, rootElement)
+        
+        ReactDOM.render(<AlertComponent />, rootElement);
     </script>
 </body>
 </html>
