@@ -7,6 +7,34 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script type="text/babel">
+        const rootElement = document.getElementById('root');
+
+        function TodoList() {
+            const [todos, setTodos] = React.useState([]);
+
+            React.useEffect(() => {
+                fetch('https://jsonplaceholder.typicode.com/todos')
+                    .then(response => response.json())
+                    .then(todos => setTodos(todos));
+            }, []);
+
+            return (
+                <div>
+                    {
+                        todos.map(todo => {
+                            return <div key={todo.id}>{todo.title}</div>
+                        })
+                    }
+                </div>
+            );
+        }
+
+        ReactDOM.render(<TodoList />, rootElement)
+    </script>
 </body>
 </html>
