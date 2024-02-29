@@ -14,18 +14,34 @@
     <script type="text/babel">
         const rootElement = document.getElementById('root');
 
-        function Counter() {
-            const [counter, setCounter] = React.useState(0);
+        const Login = () => {
+          const emailRef = React.useRef(null);
+          const passwordRef = React.useRef(null);
 
-            return (
-                <div>
-                    <span>{counter}</span>
-                    <button onClick={() => setCounter(prev => prev + 1)}>Count</button>
-                </div>
-            );
+          const onSubmit = (e) => {
+            e.preventDefault();
+            console.log({
+              email: emailRef.current.value,
+              password: passwordRef.current.value
+            })
+          }
+
+          return (
+            <form onSubmit={onSubmit}>
+                <input
+                    type="email"
+                    ref={emailRef}
+                />
+                <input
+                    type="password"
+                    ref={passwordRef}
+                />
+                <button type="submit">Login</button>
+            </form>
+          )
         }
 
-        ReactDOM.render(<Counter />, rootElement)
+        ReactDOM.render(<Login />, rootElement)
     </script>
 </body>
 </html>
