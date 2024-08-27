@@ -1,6 +1,14 @@
+# Rendering process
 
+React operates with deterministic algorithm by focusing on components creation, just defining how
+component will look like, and then React takes care of how to mount it into the DOM.
 
-React operates with deterministic algorithm
+In Vanilla JS, on the other hand, everything is performed imperativily, codes are written to
+manipulate the DOM.
+
+A component declared, return in fact, an object. This object is saved in something called VDOM (Virtual DOM),
+when a component is re-rendered, a reconciliation occurs, basically is a comparison between the the old and new object to
+be determine which parts need to be changed. And, React uses React Fiber algorithm to update the VDOM.
 
 Where is our component data stored?
 
