@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uncontrolled components</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 20vh;
+        width: 20%;
+      }
+
+      form div {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0;
+      }
+
+      div.radio-employed {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="form">
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" />
+      </div>
+      <div>
+        <label for="position">Position</label>
+        <select name="position" id="position">
+          <option>Backend</option>
+          <option>Frontend</option>
+        </select>
+      </div>
+      <div>
+        <span>Are you employed?</span>
+        <div class="radio-employed" id="radio">
+          <input
+            type="radio"
+            id="radio-yes"
+            name="radio-answer"
+            value="yes"
+            checked="checked"
+          />
+          <label for="radio-yes">YES</label>
+        </div>
+        <div class="radio-employed">
+          <input type="radio" id="radio-no" name="radio-answer" value="no" />
+          <label for="radio-no">NO</label>
+        </div>
+      </div>
+      <div>
+        <label for="bio">Bio</label>
+        <textarea id="bio" rows="4"></textarea>
+      </div>
+      <div>
+        <button>Send</button>
+      </div>
+    </form>
+
+    <script type="text/javascript">
+      const inputValue = document.getElementById("name");
+      const positionOption = document.getElementById("position");
+      const employedOption = document.getElementsByName("radio-answer");
+      const bioValue = document.getElementById("bio");
+
+      document.getElementById("form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        sendData({
+          name: inputValue.value,
+          position: positionOption.value,
+          isEmployed: getRadioOption(employedOption),
+          bio: bioValue.value,
+        });
+      });
+
+      function sendData(...data) {
+        alert(JSON.stringify(data));
+      }
+
+      function getRadioOption(nodes) {
+        const checked = Array.from(nodes).filter((node) => node.checked)[0];
+        return checked.value;
+      }
+    </script>
+  </body>
+</html>
